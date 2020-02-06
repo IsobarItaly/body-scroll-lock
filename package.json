@@ -57,12 +57,12 @@
   "scripts": {
     "clean": "rimraf lib/ && mkdir -p ./lib",
     "release": "npm version",
-    "postrelease": "yarn publish && git push --follow-tags",
+    "postrelease": "npm publish && git push --follow-tags",
     "buildEs6": "babel --plugins transform-flow-strip-types --no-babelrc src/bodyScrollLock.js > lib/bodyScrollLock.es6.js",
     "buildEs5": "babel src/bodyScrollLock.js > lib/bodyScrollLock.js && uglifyjs --compress unused,dead_code --mangle reserved=['require','exports'] lib/bodyScrollLock.js > lib/bodyScrollLock.min.js",
-    "build": "yarn buildEs6 && yarn buildEs5",
+    "build": "npm run buildEs6 && npm run buildEs5",
     "lint": "eslint ./src",
-    "prerelease": "yarn flow && yarn lint && yarn run clean && yarn build",
+    "prerelease": "npm run flow && npm run lint && npm run clean && npm run build",
     "flow": "flow",
     "prettierAll": "prettier --write --single-quote --trailing-comma es5 --print-width 120 'src/**/*.js'",
     "precommit": "lint-staged"
